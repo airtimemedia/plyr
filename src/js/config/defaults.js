@@ -211,6 +211,7 @@ const defaults = {
     // Custom control listeners
     listeners: {
         seek: null,
+        seeked: null,
         play: null,
         pause: null,
         restart: null,
