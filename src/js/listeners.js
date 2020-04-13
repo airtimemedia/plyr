@@ -700,8 +700,19 @@ class Listeners {
       // Done seeking
       const done = ['mouseup', 'touchend', 'keyup'].includes(event.type);
 
-      // If we're done seeking and it was playing, resume playback
-      if (play && done) {
+      // If we're done seeking and it was playing, resume playback.
+      // Unless there's a custom handler set for seeked
+      var customHandler = player.config.listeners.seeked;
+      var hasCustomHandler = is.function(customHandler);
+
+      if (hasCustomHandler && done) {
+        const returned = customHandler.call(player, event);
+        seek.removeAttribute(attribute);
+
+        if (returned) {
+          player.play();
+        }
+      } else if (play && done) {
         seek.removeAttribute(attribute);
         silencePromise(player.play());
       } else if (!done && player.playing) {
