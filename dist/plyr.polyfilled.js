@@ -6655,7 +6655,7 @@ typeof navigator === "object" && (function (global, factory) {
     }
   };
 
-  var is$2 = {
+  var is$1 = {
     nullOrUndefined: isNullOrUndefined$1,
     object: isObject$2,
     number: isNumber$1,
@@ -6687,7 +6687,7 @@ typeof navigator === "object" && (function (global, factory) {
     var type = Object.keys(events).find(function (event) {
       return element.style[event] !== undefined;
     });
-    return is$2.string(type) ? events[type] : false;
+    return is$1.string(type) ? events[type] : false;
   }(); // Force repaint of element
 
   function repaint(element, delay) {
@@ -6792,12 +6792,12 @@ typeof navigator === "object" && (function (global, factory) {
 
     var source = sources.shift();
 
-    if (!is$2.object(source)) {
+    if (!is$1.object(source)) {
       return target;
     }
 
     Object.keys(source).forEach(function (key) {
-      if (is$2.object(source[key])) {
+      if (is$1.object(source[key])) {
         if (!Object.keys(target).includes(key)) {
           Object.assign(target, _defineProperty({}, key, {}));
         }
@@ -6835,7 +6835,7 @@ typeof navigator === "object" && (function (global, factory) {
   } // Set attributes
 
   function setAttributes(element, attributes) {
-    if (!is$2.element(element) || is$2.empty(attributes)) {
+    if (!is$1.element(element) || is$1.empty(attributes)) {
       return;
     } // Assume null and undefined attributes should be left out,
     // Setting them would otherwise convert them to "null" and "undefined"
@@ -6845,7 +6845,7 @@ typeof navigator === "object" && (function (global, factory) {
       var _ref2 = _slicedToArray(_ref, 2),
           value = _ref2[1];
 
-      return !is$2.nullOrUndefined(value);
+      return !is$1.nullOrUndefined(value);
     }).forEach(function (_ref3) {
       var _ref4 = _slicedToArray(_ref3, 2),
           key = _ref4[0],
@@ -6859,12 +6859,12 @@ typeof navigator === "object" && (function (global, factory) {
     // Create a new <element>
     var element = document.createElement(type); // Set all passed attributes
 
-    if (is$2.object(attributes)) {
+    if (is$1.object(attributes)) {
       setAttributes(element, attributes);
     } // Add text node
 
 
-    if (is$2.string(text)) {
+    if (is$1.string(text)) {
       element.innerText = text;
     } // Return built element
 
@@ -6873,7 +6873,7 @@ typeof navigator === "object" && (function (global, factory) {
   } // Inaert an element after another
 
   function insertAfter(element, target) {
-    if (!is$2.element(element) || !is$2.element(target)) {
+    if (!is$1.element(element) || !is$1.element(target)) {
       return;
     }
 
@@ -6881,7 +6881,7 @@ typeof navigator === "object" && (function (global, factory) {
   } // Insert a DocumentFragment
 
   function insertElement(type, parent, attributes, text) {
-    if (!is$2.element(parent)) {
+    if (!is$1.element(parent)) {
       return;
     }
 
@@ -6889,12 +6889,12 @@ typeof navigator === "object" && (function (global, factory) {
   } // Remove element(s)
 
   function removeElement(element) {
-    if (is$2.nodeList(element) || is$2.array(element)) {
+    if (is$1.nodeList(element) || is$1.array(element)) {
       Array.from(element).forEach(removeElement);
       return;
     }
 
-    if (!is$2.element(element) || !is$2.element(element.parentNode)) {
+    if (!is$1.element(element) || !is$1.element(element.parentNode)) {
       return;
     }
 
@@ -6902,7 +6902,7 @@ typeof navigator === "object" && (function (global, factory) {
   } // Remove all child elements
 
   function emptyElement(element) {
-    if (!is$2.element(element)) {
+    if (!is$1.element(element)) {
       return;
     }
 
@@ -6915,7 +6915,7 @@ typeof navigator === "object" && (function (global, factory) {
   } // Replace element
 
   function replaceElement(newChild, oldChild) {
-    if (!is$2.element(oldChild) || !is$2.element(oldChild.parentNode) || !is$2.element(newChild)) {
+    if (!is$1.element(oldChild) || !is$1.element(oldChild.parentNode) || !is$1.element(newChild)) {
       return null;
     }
 
@@ -6928,7 +6928,7 @@ typeof navigator === "object" && (function (global, factory) {
     // '.test' to { class: 'test' }
     // '#test' to { id: 'test' }
     // '[data-test="test"]' to { 'data-test': 'test' }
-    if (!is$2.string(sel) || is$2.empty(sel)) {
+    if (!is$1.string(sel) || is$1.empty(sel)) {
       return {};
     }
 
@@ -6952,7 +6952,7 @@ typeof navigator === "object" && (function (global, factory) {
       switch (start) {
         case '.':
           // Add to existing classname
-          if (is$2.string(existing.class)) {
+          if (is$1.string(existing.class)) {
             attributes.class = "".concat(existing.class, " ").concat(className);
           } else {
             attributes.class = className;
@@ -6975,13 +6975,13 @@ typeof navigator === "object" && (function (global, factory) {
   } // Toggle hidden
 
   function toggleHidden(element, hidden) {
-    if (!is$2.element(element)) {
+    if (!is$1.element(element)) {
       return;
     }
 
     var hide = hidden;
 
-    if (!is$2.boolean(hide)) {
+    if (!is$1.boolean(hide)) {
       hide = !element.hidden;
     } // eslint-disable-next-line no-param-reassign
 
@@ -6990,13 +6990,13 @@ typeof navigator === "object" && (function (global, factory) {
   } // Mirror Element.classList.toggle, with IE compatibility for "force" argument
 
   function toggleClass(element, className, force) {
-    if (is$2.nodeList(element)) {
+    if (is$1.nodeList(element)) {
       return Array.from(element).map(function (e) {
         return toggleClass(e, className, force);
       });
     }
 
-    if (is$2.element(element)) {
+    if (is$1.element(element)) {
       var method = 'toggle';
 
       if (typeof force !== 'undefined') {
@@ -7011,7 +7011,7 @@ typeof navigator === "object" && (function (global, factory) {
   } // Has class name
 
   function hasClass(element, className) {
-    return is$2.element(element) && element.classList.contains(className);
+    return is$1.element(element) && element.classList.contains(className);
   } // Element matches selector
 
   function matches$1(element, selector) {
@@ -7036,7 +7036,7 @@ typeof navigator === "object" && (function (global, factory) {
     var element = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
     var tabFocus = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
-    if (!is$2.element(element)) {
+    if (!is$1.element(element)) {
       return;
     } // Set regular focus
 
@@ -7082,7 +7082,7 @@ typeof navigator === "object" && (function (global, factory) {
       // https://developer.apple.com/documentation/webkitjs/adding_picture_in_picture_to_your_safari_media_controls
 
 
-      if (is$2.function(createElement('video').webkitSetPresentationMode)) {
+      if (is$1.function(createElement('video').webkitSetPresentationMode)) {
         return true;
       } // Chrome
       // https://developers.google.com/web/updates/2018/10/watch-video-using-picture-in-picture
@@ -7096,7 +7096,7 @@ typeof navigator === "object" && (function (global, factory) {
     }(),
     // Airplay support
     // Safari only currently
-    airplay: is$2.function(window.WebKitPlaybackTargetAvailabilityEvent),
+    airplay: is$1.function(window.WebKitPlaybackTargetAvailabilityEvent),
     // Inline playback support
     // https://webkit.org/blog/6784/new-video-policies-for-ios/
     playsinline: 'playsInline' in document.createElement('video'),
@@ -7104,7 +7104,7 @@ typeof navigator === "object" && (function (global, factory) {
     // Credits: http://diveintohtml5.info/everything.html
     // Related: http://www.leanbackplayer.com/test/h5mt.html
     mime: function mime(input) {
-      if (is$2.empty(input)) {
+      if (is$1.empty(input)) {
         return false;
       }
 
@@ -7178,7 +7178,7 @@ typeof navigator === "object" && (function (global, factory) {
     var capture = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : false;
 
     // Bail if no element, event, or callback
-    if (!element || !('addEventListener' in element) || is$2.empty(event) || !is$2.function(callback)) {
+    if (!element || !('addEventListener' in element) || is$1.empty(event) || !is$1.function(callback)) {
       return;
     } // Allow multiple events
 
@@ -7256,7 +7256,7 @@ typeof navigator === "object" && (function (global, factory) {
     var detail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
 
     // Bail if no element
-    if (!is$2.element(element) || is$2.empty(type)) {
+    if (!is$1.element(element) || is$1.empty(type)) {
       return;
     } // Create and dispatch the event
 
@@ -7293,15 +7293,15 @@ typeof navigator === "object" && (function (global, factory) {
   }
 
   function validateRatio(input) {
-    if (!is$2.array(input) && (!is$2.string(input) || !input.includes(':'))) {
+    if (!is$1.array(input) && (!is$1.string(input) || !input.includes(':'))) {
       return false;
     }
 
-    var ratio = is$2.array(input) ? input : input.split(':');
-    return ratio.map(Number).every(is$2.number);
+    var ratio = is$1.array(input) ? input : input.split(':');
+    return ratio.map(Number).every(is$1.number);
   }
   function reduceAspectRatio(ratio) {
-    if (!is$2.array(ratio) || !ratio.every(is$2.number)) {
+    if (!is$1.array(ratio) || !ratio.every(is$1.number)) {
       return null;
     }
 
@@ -7329,7 +7329,7 @@ typeof navigator === "object" && (function (global, factory) {
     } // Get from embed
 
 
-    if (ratio === null && !is$2.empty(this.embed) && is$2.array(this.embed.ratio)) {
+    if (ratio === null && !is$1.empty(this.embed) && is$1.array(this.embed.ratio)) {
       ratio = this.embed.ratio;
     } // Get from HTML5 video
 
@@ -7352,7 +7352,7 @@ typeof navigator === "object" && (function (global, factory) {
     var wrapper = this.elements.wrapper;
     var ratio = getAspectRatio.call(this, input);
 
-    var _ref = is$2.array(ratio) ? ratio : [0, 0],
+    var _ref = is$1.array(ratio) ? ratio : [0, 0],
         _ref2 = _slicedToArray(_ref, 2),
         w = _ref2[0],
         h = _ref2[1];
@@ -7387,7 +7387,7 @@ typeof navigator === "object" && (function (global, factory) {
       return sources.filter(function (source) {
         var type = source.getAttribute('type');
 
-        if (is$2.empty(type)) {
+        if (is$1.empty(type)) {
           return true;
         }
 
@@ -7415,7 +7415,7 @@ typeof navigator === "object" && (function (global, factory) {
 
       player.options.speed = player.config.speed.options; // Set aspect ratio if fixed
 
-      if (!is$2.empty(this.config.ratio)) {
+      if (!is$1.empty(this.config.ratio)) {
         setAspectRatio.call(player);
       } // Quality
 
@@ -7436,7 +7436,7 @@ typeof navigator === "object" && (function (global, factory) {
           } // If we're using an an external handler...
 
 
-          if (player.config.quality.forced && is$2.function(player.config.quality.onChange)) {
+          if (player.config.quality.forced && is$1.function(player.config.quality.onChange)) {
             player.config.quality.onChange(input);
           } else {
             // Get sources
@@ -7505,7 +7505,7 @@ typeof navigator === "object" && (function (global, factory) {
   };
 
   function dedupe(array) {
-    if (!is$2.array(array)) {
+    if (!is$1.array(array)) {
       return array;
     }
 
@@ -7515,7 +7515,7 @@ typeof navigator === "object" && (function (global, factory) {
   } // Get the closest value in an array
 
   function closest(array, value) {
-    if (!is$2.array(array) || !array.length) {
+    if (!is$1.array(array) || !array.length) {
       return null;
     }
 
@@ -7614,7 +7614,7 @@ typeof navigator === "object" && (function (global, factory) {
       args[_key - 1] = arguments[_key];
     }
 
-    if (is$2.empty(input)) {
+    if (is$1.empty(input)) {
       return input;
     }
 
@@ -7693,13 +7693,13 @@ typeof navigator === "object" && (function (global, factory) {
       var key = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
       var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-      if (is$2.empty(key) || is$2.empty(config)) {
+      if (is$1.empty(key) || is$1.empty(config)) {
         return '';
       }
 
       var string = getDeep(config.i18n, key);
 
-      if (is$2.empty(string)) {
+      if (is$1.empty(string)) {
         if (Object.keys(resources).includes(key)) {
           return resources[key];
         }
@@ -7740,12 +7740,12 @@ typeof navigator === "object" && (function (global, factory) {
 
         var store = window.localStorage.getItem(this.key);
 
-        if (is$2.empty(store)) {
+        if (is$1.empty(store)) {
           return null;
         }
 
         var json = JSON.parse(store);
-        return is$2.string(key) && key.length ? json[key] : json;
+        return is$1.string(key) && key.length ? json[key] : json;
       }
     }, {
       key: "set",
@@ -7756,14 +7756,14 @@ typeof navigator === "object" && (function (global, factory) {
         } // Can only store objectst
 
 
-        if (!is$2.object(object)) {
+        if (!is$1.object(object)) {
           return;
         } // Get current storage
 
 
         var storage = this.get(); // Default to empty object
 
-        if (is$2.empty(storage)) {
+        if (is$1.empty(storage)) {
           storage = {};
         } // Update the working copy of the values
 
@@ -7836,12 +7836,12 @@ typeof navigator === "object" && (function (global, factory) {
   // ==========================================================================
 
   function loadSprite(url, id) {
-    if (!is$2.string(url)) {
+    if (!is$1.string(url)) {
       return;
     }
 
     var prefix = 'cache';
-    var hasId = is$2.string(id);
+    var hasId = is$1.string(id);
     var isCached = false;
 
     var exists = function exists() {
@@ -7884,7 +7884,7 @@ typeof navigator === "object" && (function (global, factory) {
 
 
       fetch(url).then(function (result) {
-        if (is$2.empty(result)) {
+        if (is$1.empty(result)) {
           return;
         }
 
@@ -7926,7 +7926,7 @@ typeof navigator === "object" && (function (global, factory) {
     var inverted = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
     // Bail if the value isn't a number
-    if (!is$2.number(time)) {
+    if (!is$1.number(time)) {
       return formatTime(undefined, displayHours, inverted);
     } // Format time component to add leading zero
 
@@ -7992,7 +7992,7 @@ typeof navigator === "object" && (function (global, factory) {
           duration: getElement.call(this, this.config.selectors.display.duration)
         }; // Seek tooltip
 
-        if (is$2.element(this.elements.progress)) {
+        if (is$1.element(this.elements.progress)) {
           this.elements.display.seekTooltip = this.elements.progress.querySelector(".".concat(this.config.classNames.tooltip));
         }
 
@@ -8045,7 +8045,7 @@ typeof navigator === "object" && (function (global, factory) {
     },
     // Create a badge
     createBadge: function createBadge(text) {
-      if (is$2.empty(text)) {
+      if (is$1.empty(text)) {
         return null;
       }
 
@@ -8137,11 +8137,11 @@ typeof navigator === "object" && (function (global, factory) {
           break;
 
         default:
-          if (is$2.empty(props.label)) {
+          if (is$1.empty(props.label)) {
             props.label = type;
           }
 
-          if (is$2.empty(props.icon)) {
+          if (is$1.empty(props.icon)) {
             props.icon = buttonType;
           }
 
@@ -8174,7 +8174,7 @@ typeof navigator === "object" && (function (global, factory) {
       setAttributes(button, attributes); // We have multiple play buttons
 
       if (type === 'play') {
-        if (!is$2.array(this.elements.buttons[type])) {
+        if (!is$1.array(this.elements.buttons[type])) {
           this.elements.buttons[type] = [];
         }
 
@@ -8275,13 +8275,13 @@ typeof navigator === "object" && (function (global, factory) {
             if (event.which === 40 || isRadioButton && event.which === 39) {
               target = menuItem.nextElementSibling;
 
-              if (!is$2.element(target)) {
+              if (!is$1.element(target)) {
                 target = menuItem.parentNode.firstElementChild;
               }
             } else {
               target = menuItem.previousElementSibling;
 
-              if (!is$2.element(target)) {
+              if (!is$1.element(target)) {
                 target = menuItem.parentNode.lastElementChild;
               }
             }
@@ -8324,7 +8324,7 @@ typeof navigator === "object" && (function (global, factory) {
 
       flex.innerHTML = title;
 
-      if (is$2.element(badge)) {
+      if (is$1.element(badge)) {
         flex.appendChild(badge);
       }
 
@@ -8349,7 +8349,7 @@ typeof navigator === "object" && (function (global, factory) {
         }
       });
       this.listeners.bind(menuItem, 'click keyup', function (event) {
-        if (is$2.keyboardEvent(event) && event.which !== 32) {
+        if (is$1.keyboardEvent(event) && event.which !== 32) {
           return;
         }
 
@@ -8371,7 +8371,7 @@ typeof navigator === "object" && (function (global, factory) {
             break;
         }
 
-        controls.showMenuPanel.call(_this3, 'home', is$2.keyboardEvent(event));
+        controls.showMenuPanel.call(_this3, 'home', is$1.keyboardEvent(event));
       }, type, false);
       controls.bindMenuItemShortcuts.call(this, menuItem, type);
       list.appendChild(menuItem);
@@ -8382,7 +8382,7 @@ typeof navigator === "object" && (function (global, factory) {
       var inverted = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
       // Bail if the value isn't a number
-      if (!is$2.number(time)) {
+      if (!is$1.number(time)) {
         return time;
       } // Always display hours if duration is over an hour
 
@@ -8397,7 +8397,7 @@ typeof navigator === "object" && (function (global, factory) {
       var inverted = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
       // Bail if there's no element to display or the value isn't a number
-      if (!is$2.element(target) || !is$2.number(time)) {
+      if (!is$1.element(target) || !is$1.number(time)) {
         return;
       } // eslint-disable-next-line no-param-reassign
 
@@ -8411,12 +8411,12 @@ typeof navigator === "object" && (function (global, factory) {
       } // Update range
 
 
-      if (is$2.element(this.elements.inputs.volume)) {
+      if (is$1.element(this.elements.inputs.volume)) {
         controls.setRange.call(this, this.elements.inputs.volume, this.muted ? 0 : this.volume);
       } // Update mute state
 
 
-      if (is$2.element(this.elements.buttons.mute)) {
+      if (is$1.element(this.elements.buttons.mute)) {
         this.elements.buttons.mute.pressed = this.muted || this.volume === 0;
       }
     },
@@ -8424,7 +8424,7 @@ typeof navigator === "object" && (function (global, factory) {
     setRange: function setRange(target) {
       var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
-      if (!is$2.element(target)) {
+      if (!is$1.element(target)) {
         return;
       } // eslint-disable-next-line
 
@@ -8437,22 +8437,22 @@ typeof navigator === "object" && (function (global, factory) {
     updateProgress: function updateProgress(event) {
       var _this4 = this;
 
-      if (!this.supported.ui || !is$2.event(event)) {
+      if (!this.supported.ui || !is$1.event(event)) {
         return;
       }
 
       var value = 0;
 
       var setProgress = function setProgress(target, input) {
-        var val = is$2.number(input) ? input : 0;
-        var progress = is$2.element(target) ? target : _this4.elements.display.buffer; // Update value and label
+        var val = is$1.number(input) ? input : 0;
+        var progress = is$1.element(target) ? target : _this4.elements.display.buffer; // Update value and label
 
-        if (is$2.element(progress)) {
+        if (is$1.element(progress)) {
           progress.value = val; // Update text label inside
 
           var label = progress.getElementsByTagName('span')[0];
 
-          if (is$2.element(label)) {
+          if (is$1.element(label)) {
             label.childNodes[0].nodeValue = val;
           }
         }
@@ -8483,9 +8483,9 @@ typeof navigator === "object" && (function (global, factory) {
     // Webkit polyfill for lower fill range
     updateRangeFill: function updateRangeFill(target) {
       // Get range from event if event passed
-      var range = is$2.event(target) ? target.target : target; // Needs to be a valid <input type='range'>
+      var range = is$1.event(target) ? target.target : target; // Needs to be a valid <input type='range'>
 
-      if (!is$2.element(range) || range.getAttribute('type') !== 'range') {
+      if (!is$1.element(range) || range.getAttribute('type') !== 'range') {
         return;
       } // Set aria values for https://github.com/sampotts/plyr/issues/905
 
@@ -8517,7 +8517,7 @@ typeof navigator === "object" && (function (global, factory) {
       var _this5 = this;
 
       // Bail if setting not true
-      if (!this.config.tooltips.seek || !is$2.element(this.elements.inputs.seek) || !is$2.element(this.elements.display.seekTooltip) || this.duration === 0) {
+      if (!this.config.tooltips.seek || !is$1.element(this.elements.inputs.seek) || !is$1.element(this.elements.display.seekTooltip) || this.duration === 0) {
         return;
       }
 
@@ -8537,7 +8537,7 @@ typeof navigator === "object" && (function (global, factory) {
       var percent = 0;
       var clientRect = this.elements.progress.getBoundingClientRect();
 
-      if (is$2.event(event)) {
+      if (is$1.event(event)) {
         percent = 100 / clientRect.width * (event.pageX - clientRect.left);
       } else if (hasClass(this.elements.display.seekTooltip, visible)) {
         percent = parseFloat(this.elements.display.seekTooltip.style.left, 10);
@@ -8558,14 +8558,14 @@ typeof navigator === "object" && (function (global, factory) {
       this.elements.display.seekTooltip.style.left = "".concat(percent, "%"); // Show/hide the tooltip
       // If the event is a moues in/out and percentage is inside bounds
 
-      if (is$2.event(event) && ['mouseenter', 'mouseleave'].includes(event.type)) {
+      if (is$1.event(event) && ['mouseenter', 'mouseleave'].includes(event.type)) {
         toggle(event.type === 'mouseenter');
       }
     },
     // Handle time change event
     timeUpdate: function timeUpdate(event) {
       // Only invert if only one time element is displayed and used for both duration and currentTime
-      var invert = !is$2.element(this.elements.display.duration) && this.config.invertTime; // Duration
+      var invert = !is$1.element(this.elements.display.duration) && this.config.invertTime; // Duration
 
       controls.updateTimeDisplay.call(this, this.elements.display.currentTime, invert ? this.duration - this.currentTime : this.currentTime, invert); // Ignore updates while seeking
 
@@ -8594,12 +8594,12 @@ typeof navigator === "object" && (function (global, factory) {
       } // Update ARIA values
 
 
-      if (is$2.element(this.elements.inputs.seek)) {
+      if (is$1.element(this.elements.inputs.seek)) {
         this.elements.inputs.seek.setAttribute('aria-valuemax', this.duration);
       } // If there's a spot to display duration
 
 
-      var hasDuration = is$2.element(this.elements.display.duration); // If there's only one time display, display duration there
+      var hasDuration = is$1.element(this.elements.display.duration); // If there's only one time display, display duration there
 
       if (!hasDuration && this.config.displayDuration && this.paused) {
         controls.updateTimeDisplay.call(this, this.elements.display.currentTime, this.duration);
@@ -8626,14 +8626,14 @@ typeof navigator === "object" && (function (global, factory) {
       if (setting === 'captions') {
         value = this.currentTrack;
       } else {
-        value = !is$2.empty(input) ? input : this[setting]; // Get default
+        value = !is$1.empty(input) ? input : this[setting]; // Get default
 
-        if (is$2.empty(value)) {
+        if (is$1.empty(value)) {
           value = this.config[setting].default;
         } // Unsupported value
 
 
-        if (!is$2.empty(this.options[setting]) && !this.options[setting].includes(value)) {
+        if (!is$1.empty(this.options[setting]) && !this.options[setting].includes(value)) {
           this.debug.warn("Unsupported value of '".concat(value, "' for ").concat(setting));
           return;
         } // Disabled value
@@ -8646,12 +8646,12 @@ typeof navigator === "object" && (function (global, factory) {
       } // Get the list if we need to
 
 
-      if (!is$2.element(list)) {
+      if (!is$1.element(list)) {
         list = pane && pane.querySelector('[role="menu"]');
       } // If there's no list it means it's not been rendered...
 
 
-      if (!is$2.element(list)) {
+      if (!is$1.element(list)) {
         return;
       } // Update the label
 
@@ -8661,7 +8661,7 @@ typeof navigator === "object" && (function (global, factory) {
 
       var target = list && list.querySelector("[value=\"".concat(value, "\"]"));
 
-      if (is$2.element(target)) {
+      if (is$1.element(target)) {
         target.checked = true;
       }
     },
@@ -8672,7 +8672,7 @@ typeof navigator === "object" && (function (global, factory) {
           return value === 1 ? i18n.get('normal', this.config) : "".concat(value, "&times;");
 
         case 'quality':
-          if (is$2.number(value)) {
+          if (is$1.number(value)) {
             var label = i18n.get("qualityLabel.".concat(value), this.config);
 
             if (!label.length) {
@@ -8696,21 +8696,21 @@ typeof navigator === "object" && (function (global, factory) {
       var _this6 = this;
 
       // Menu required
-      if (!is$2.element(this.elements.settings.panels.quality)) {
+      if (!is$1.element(this.elements.settings.panels.quality)) {
         return;
       }
 
       var type = 'quality';
       var list = this.elements.settings.panels.quality.querySelector('[role="menu"]'); // Set options if passed and filter based on uniqueness and config
 
-      if (is$2.array(options)) {
+      if (is$1.array(options)) {
         this.options.quality = dedupe(options).filter(function (quality) {
           return _this6.config.quality.options.includes(quality);
         });
       } // Toggle the pane and tab
 
 
-      var toggle = !is$2.empty(this.options.quality) && this.options.quality.length > 1;
+      var toggle = !is$1.empty(this.options.quality) && this.options.quality.length > 1;
       controls.toggleMenuButton.call(this, type, toggle); // Empty the menu
 
       emptyElement(list); // Check if we need to toggle the parent
@@ -8790,7 +8790,7 @@ typeof navigator === "object" && (function (global, factory) {
       var _this7 = this;
 
       // Menu required
-      if (!is$2.element(this.elements.settings.panels.captions)) {
+      if (!is$1.element(this.elements.settings.panels.captions)) {
         return;
       } // TODO: Captions or language? Currently it's mixed
 
@@ -8838,7 +8838,7 @@ typeof navigator === "object" && (function (global, factory) {
       var _this8 = this;
 
       // Menu required
-      if (!is$2.element(this.elements.settings.panels.speed)) {
+      if (!is$1.element(this.elements.settings.panels.speed)) {
         return;
       }
 
@@ -8849,7 +8849,7 @@ typeof navigator === "object" && (function (global, factory) {
         return o >= _this8.minimumSpeed && o <= _this8.maximumSpeed;
       }); // Toggle the pane and tab
 
-      var toggle = !is$2.empty(this.options.speed) && this.options.speed.length > 1;
+      var toggle = !is$1.empty(this.options.speed) && this.options.speed.length > 1;
       controls.toggleMenuButton.call(this, type, toggle); // Empty the menu
 
       emptyElement(list); // Check if we need to toggle the parent
@@ -8874,7 +8874,7 @@ typeof navigator === "object" && (function (global, factory) {
     // Check if we need to hide/show the settings menu
     checkMenu: function checkMenu() {
       var buttons = this.elements.settings.buttons;
-      var visible = !is$2.empty(buttons) && Object.values(buttons).some(function (button) {
+      var visible = !is$1.empty(buttons) && Object.values(buttons).some(function (button) {
         return !button.hidden;
       });
       toggleHidden(this.elements.settings.menu, !visible);
@@ -8889,7 +8889,7 @@ typeof navigator === "object" && (function (global, factory) {
 
       var target = pane;
 
-      if (!is$2.element(target)) {
+      if (!is$1.element(target)) {
         target = Object.values(this.elements.settings.panels).find(function (p) {
           return !p.hidden;
         });
@@ -8903,7 +8903,7 @@ typeof navigator === "object" && (function (global, factory) {
       var popup = this.elements.settings.popup;
       var button = this.elements.buttons.settings; // Menu and button are required
 
-      if (!is$2.element(popup) || !is$2.element(button)) {
+      if (!is$1.element(popup) || !is$1.element(button)) {
         return;
       } // True toggle by default
 
@@ -8911,14 +8911,14 @@ typeof navigator === "object" && (function (global, factory) {
       var hidden = popup.hidden;
       var show = hidden;
 
-      if (is$2.boolean(input)) {
+      if (is$1.boolean(input)) {
         show = input;
-      } else if (is$2.keyboardEvent(input) && input.which === 27) {
+      } else if (is$1.keyboardEvent(input) && input.which === 27) {
         show = false;
-      } else if (is$2.event(input)) {
+      } else if (is$1.event(input)) {
         // If Plyr is in a shadowDOM, the event target is set to the component, instead of the
         // Element in the shadowDOM. The path, if available, is complete.
-        var target = is$2.function(input.composedPath) ? input.composedPath()[0] : input.target;
+        var target = is$1.function(input.composedPath) ? input.composedPath()[0] : input.target;
         var isMenuItem = popup.contains(target); // If the click was inside the menu or if the click
         // wasn't the button or menu item and we're trying to
         // show the menu (a doc click shouldn't show the menu)
@@ -8935,11 +8935,11 @@ typeof navigator === "object" && (function (global, factory) {
 
       toggleClass(this.elements.container, this.config.classNames.menu.open, show); // Focus the first item if key interaction
 
-      if (show && is$2.keyboardEvent(input)) {
+      if (show && is$1.keyboardEvent(input)) {
         controls.focusFirstMenuItem.call(this, null, true);
       } else if (!show && !hidden) {
         // If closing, re-focus the button
-        setFocus.call(this, button, is$2.keyboardEvent(input));
+        setFocus.call(this, button, is$1.keyboardEvent(input));
       }
     },
     // Get the natural size of a menu panel
@@ -8968,7 +8968,7 @@ typeof navigator === "object" && (function (global, factory) {
       var tabFocus = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
       var target = this.elements.container.querySelector("#plyr-settings-".concat(this.id, "-").concat(type)); // Nothing to show, bail
 
-      if (!is$2.element(target)) {
+      if (!is$1.element(target)) {
         return;
       } // Hide all other panels
 
@@ -9016,7 +9016,7 @@ typeof navigator === "object" && (function (global, factory) {
     setDownloadUrl: function setDownloadUrl() {
       var button = this.elements.buttons.download; // Bail if no button
 
-      if (!is$2.element(button)) {
+      if (!is$1.element(button)) {
         return;
       } // Set attribute
 
@@ -9111,7 +9111,7 @@ typeof navigator === "object" && (function (global, factory) {
         if (control === 'mute' || control === 'volume') {
           var volume = _this10.elements.volume; // Create the volume container if needed
 
-          if (!is$2.element(volume) || !container.contains(volume)) {
+          if (!is$1.element(volume) || !container.contains(volume)) {
             volume = createElement('div', extend({}, defaultAttributes, {
               class: "".concat(defaultAttributes.class, " plyr__volume").trim()
             }));
@@ -9147,7 +9147,7 @@ typeof navigator === "object" && (function (global, factory) {
         } // Settings button / menu
 
 
-        if (control === 'settings' && !is$2.empty(_this10.config.settings)) {
+        if (control === 'settings' && !is$1.empty(_this10.config.settings)) {
           var wrapper = createElement('div', extend({}, defaultAttributes, {
             class: "".concat(defaultAttributes.class, " plyr__menu").trim(),
             hidden: ''
@@ -9276,7 +9276,7 @@ typeof navigator === "object" && (function (global, factory) {
 
           var download = _this10.config.urls.download;
 
-          if (!is$2.url(download) && _this10.isEmbed) {
+          if (!is$1.url(download) && _this10.isEmbed) {
             extend(_attributes, {
               icon: "logo-".concat(_this10.provider),
               label: _this10.provider
@@ -9325,7 +9325,7 @@ typeof navigator === "object" && (function (global, factory) {
       };
       var update = true; // If function, run it and use output
 
-      if (is$2.function(this.config.controls)) {
+      if (is$1.function(this.config.controls)) {
         this.config.controls = this.config.controls.call(this, props);
       } // Convert falsy controls to empty array (primarily for empty strings)
 
@@ -9334,7 +9334,7 @@ typeof navigator === "object" && (function (global, factory) {
         this.config.controls = [];
       }
 
-      if (is$2.element(this.config.controls) || is$2.string(this.config.controls)) {
+      if (is$1.element(this.config.controls) || is$1.string(this.config.controls)) {
         // HTMLElement or Non-empty string passed as the option
         container = this.config.controls;
       } else {
@@ -9366,9 +9366,9 @@ typeof navigator === "object" && (function (global, factory) {
 
 
       if (update) {
-        if (is$2.string(this.config.controls)) {
+        if (is$1.string(this.config.controls)) {
           container = replace(container);
-        } else if (is$2.element(container)) {
+        } else if (is$1.element(container)) {
           container.innerHTML = replace(container.innerHTML);
         }
       } // Controls container
@@ -9376,25 +9376,25 @@ typeof navigator === "object" && (function (global, factory) {
 
       var target; // Inject to custom location
 
-      if (is$2.string(this.config.selectors.controls.container)) {
+      if (is$1.string(this.config.selectors.controls.container)) {
         target = document.querySelector(this.config.selectors.controls.container);
       } // Inject into the container by default
 
 
-      if (!is$2.element(target)) {
+      if (!is$1.element(target)) {
         target = this.elements.container;
       } // Inject controls HTML (needs to be before captions, hence "afterbegin")
 
 
-      var insertMethod = is$2.element(container) ? 'insertAdjacentElement' : 'insertAdjacentHTML';
+      var insertMethod = is$1.element(container) ? 'insertAdjacentElement' : 'insertAdjacentHTML';
       target[insertMethod]('afterbegin', container); // Find the elements if need be
 
-      if (!is$2.element(this.elements.controls)) {
+      if (!is$1.element(this.elements.controls)) {
         controls.findElements.call(this);
       } // Add pressed property to buttons
 
 
-      if (!is$2.empty(this.elements.buttons)) {
+      if (!is$1.empty(this.elements.buttons)) {
         var addProperty = function addProperty(button) {
           var className = _this11.config.classNames.controlPressed;
           Object.defineProperty(button, 'pressed', {
@@ -9411,7 +9411,7 @@ typeof navigator === "object" && (function (global, factory) {
 
 
         Object.values(this.elements.buttons).filter(Boolean).forEach(function (button) {
-          if (is$2.array(button) || is$2.nodeList(button)) {
+          if (is$1.array(button) || is$1.nodeList(button)) {
             Array.from(button).filter(Boolean).forEach(addProperty);
           } else {
             addProperty(button);
@@ -9465,7 +9465,7 @@ typeof navigator === "object" && (function (global, factory) {
   function buildUrlParams(input) {
     var params = new URLSearchParams();
 
-    if (is$2.object(input)) {
+    if (is$1.object(input)) {
       Object.entries(input).forEach(function (_ref) {
         var _ref2 = _slicedToArray(_ref, 2),
             key = _ref2[0],
@@ -9489,7 +9489,7 @@ typeof navigator === "object" && (function (global, factory) {
 
       if (!this.isVideo || this.isYouTube || this.isHTML5 && !support.textTracks) {
         // Clear menu and hide
-        if (is$2.array(this.config.controls) && this.config.controls.includes('settings') && this.config.settings.includes('captions')) {
+        if (is$1.array(this.config.controls) && this.config.controls.includes('settings') && this.config.settings.includes('captions')) {
           controls.setCaptionsMenu.call(this);
         }
 
@@ -9497,7 +9497,7 @@ typeof navigator === "object" && (function (global, factory) {
       } // Inject the container
 
 
-      if (!is$2.element(this.elements.captions)) {
+      if (!is$1.element(this.elements.captions)) {
         this.elements.captions = createElement('div', getAttributesFromSelector(this.config.selectors.captions));
         insertAfter(this.elements.captions, this.elements.wrapper);
       } // Fix IE captions if CORS is used
@@ -9540,7 +9540,7 @@ typeof navigator === "object" && (function (global, factory) {
 
       var active = this.storage.get('captions');
 
-      if (!is$2.boolean(active)) {
+      if (!is$1.boolean(active)) {
         active = this.config.captions.active;
       }
 
@@ -9601,7 +9601,7 @@ typeof navigator === "object" && (function (global, factory) {
       } // Enable or disable captions based on track length
 
 
-      toggleClass(this.elements.container, this.config.classNames.captions.enabled, !is$2.empty(tracks)); // Update available languages in list
+      toggleClass(this.elements.container, this.config.classNames.captions.enabled, !is$1.empty(tracks)); // Update available languages in list
 
       if ((this.config.controls || []).includes('settings') && this.config.settings.includes('captions')) {
         controls.setCaptionsMenu.call(this);
@@ -9622,7 +9622,7 @@ typeof navigator === "object" && (function (global, factory) {
       var activeClass = this.config.classNames.captions.active; // Get the next state
       // If the method is called without parameter, toggle based on current value
 
-      var active = is$2.nullOrUndefined(input) ? !toggled : input; // Update state and trigger event
+      var active = is$1.nullOrUndefined(input) ? !toggled : input; // Update state and trigger event
 
       if (active !== toggled) {
         // When passive, don't override user preferences
@@ -9669,7 +9669,7 @@ typeof navigator === "object" && (function (global, factory) {
         return;
       }
 
-      if (!is$2.number(index)) {
+      if (!is$1.number(index)) {
         this.debug.warn('Invalid caption argument', index);
         return;
       }
@@ -9720,7 +9720,7 @@ typeof navigator === "object" && (function (global, factory) {
     setLanguage: function setLanguage(input) {
       var passive = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
 
-      if (!is$2.string(input)) {
+      if (!is$1.string(input)) {
         this.debug.warn('Invalid language argument', input);
         return;
       } // Normalize
@@ -9782,16 +9782,16 @@ typeof navigator === "object" && (function (global, factory) {
     getLabel: function getLabel(track) {
       var currentTrack = track;
 
-      if (!is$2.track(currentTrack) && support.textTracks && this.captions.toggled) {
+      if (!is$1.track(currentTrack) && support.textTracks && this.captions.toggled) {
         currentTrack = captions.getCurrentTrack.call(this);
       }
 
-      if (is$2.track(currentTrack)) {
-        if (!is$2.empty(currentTrack.label)) {
+      if (is$1.track(currentTrack)) {
+        if (!is$1.empty(currentTrack.label)) {
           return currentTrack.label;
         }
 
-        if (!is$2.empty(currentTrack.language)) {
+        if (!is$1.empty(currentTrack.language)) {
           return track.language.toUpperCase();
         }
 
@@ -9808,13 +9808,13 @@ typeof navigator === "object" && (function (global, factory) {
         return;
       }
 
-      if (!is$2.element(this.elements.captions)) {
+      if (!is$1.element(this.elements.captions)) {
         this.debug.warn('No captions element to render to');
         return;
       } // Only accept array or empty input
 
 
-      if (!is$2.nullOrUndefined(input) && !Array.isArray(input)) {
+      if (!is$1.nullOrUndefined(input) && !Array.isArray(input)) {
         this.debug.warn('updateCues: Invalid input', input);
         return;
       }
@@ -10306,7 +10306,7 @@ typeof navigator === "object" && (function (global, factory) {
 
       on.call(this.player, this.player.elements.container, 'dblclick', function (event) {
         // Ignore double click in controls
-        if (is$2.element(_this.player.elements.controls) && _this.player.elements.controls.contains(event.target)) {
+        if (is$1.element(_this.player.elements.controls) && _this.player.elements.controls.contains(event.target)) {
           return;
         }
 
@@ -10331,7 +10331,7 @@ typeof navigator === "object" && (function (global, factory) {
 
         var button = this.player.elements.buttons.fullscreen;
 
-        if (is$2.element(button)) {
+        if (is$1.element(button)) {
           button.pressed = this.active;
         } // Trigger an event
 
@@ -10368,7 +10368,7 @@ typeof navigator === "object" && (function (global, factory) {
           } // Check if the property already exists
 
 
-          var hasProperty = is$2.string(viewport.content) && viewport.content.includes(property);
+          var hasProperty = is$1.string(viewport.content) && viewport.content.includes(property);
 
           if (toggle) {
             this.cleanupViewport = !hasProperty;
@@ -10454,7 +10454,7 @@ typeof navigator === "object" && (function (global, factory) {
           this.target.requestFullscreen({
             navigationUI: 'hide'
           });
-        } else if (!is$2.empty(this.prefix)) {
+        } else if (!is$1.empty(this.prefix)) {
           this.target["".concat(this.prefix, "Request").concat(this.property)]();
         }
       } // Bail from fullscreen
@@ -10474,7 +10474,7 @@ typeof navigator === "object" && (function (global, factory) {
           this.toggleFallback(false);
         } else if (!this.prefix) {
           (document.cancelFullScreen || document.exitFullscreen).call(document);
-        } else if (!is$2.empty(this.prefix)) {
+        } else if (!is$1.empty(this.prefix)) {
           var action = this.prefix === 'moz' ? 'Cancel' : 'Exit';
           document["".concat(this.prefix).concat(action).concat(this.property)]();
         }
@@ -10533,7 +10533,7 @@ typeof navigator === "object" && (function (global, factory) {
       key: "prefix",
       get: function get() {
         // No prefix
-        if (is$2.function(document.exitFullscreen)) {
+        if (is$1.function(document.exitFullscreen)) {
           return '';
         } // Check for fullscreen support by vendor prefix
 
@@ -10541,7 +10541,7 @@ typeof navigator === "object" && (function (global, factory) {
         var value = '';
         var prefixes = ['webkit', 'moz', 'ms'];
         prefixes.some(function (pre) {
-          if (is$2.function(document["".concat(pre, "ExitFullscreen")]) || is$2.function(document["".concat(pre, "CancelFullScreen")])) {
+          if (is$1.function(document["".concat(pre, "ExitFullscreen")]) || is$1.function(document["".concat(pre, "CancelFullScreen")])) {
             value = pre;
             return true;
           }
@@ -10629,7 +10629,7 @@ typeof navigator === "object" && (function (global, factory) {
       } // Inject custom controls if not present
 
 
-      if (!is$2.element(this.elements.controls)) {
+      if (!is$1.element(this.elements.controls)) {
         // Inject custom controls
         controls.inject.call(this); // Re-attach control listeners
 
@@ -10691,7 +10691,7 @@ typeof navigator === "object" && (function (global, factory) {
       // Find the current text
       var label = i18n.get('play', this.config); // If there's a media title set, use that for the label
 
-      if (is$2.string(this.config.title) && !is$2.empty(this.config.title)) {
+      if (is$1.string(this.config.title) && !is$1.empty(this.config.title)) {
         label += ", ".concat(this.config.title);
       } // If there's a play button, set label
 
@@ -10704,12 +10704,12 @@ typeof navigator === "object" && (function (global, factory) {
       if (this.isEmbed) {
         var iframe = getElement.call(this, 'iframe');
 
-        if (!is$2.element(iframe)) {
+        if (!is$1.element(iframe)) {
           return;
         } // Default to media type
 
 
-        var title = !is$2.empty(this.config.title) ? this.config.title : 'video';
+        var title = !is$1.empty(this.config.title) ? this.config.title : 'video';
         var format = i18n.get('frameTitle', this.config);
         iframe.setAttribute('title', format.replace('{title}', title));
       }
@@ -10780,7 +10780,7 @@ typeof navigator === "object" && (function (global, factory) {
         target.setAttribute('aria-label', i18n.get(_this3.playing ? 'pause' : 'play', _this3.config));
       }); // Only update controls on non timeupdate events
 
-      if (is$2.event(event) && event.type === 'timeupdate') {
+      if (is$1.event(event) && event.type === 'timeupdate') {
         return;
       } // Toggle controls
 
@@ -10845,7 +10845,7 @@ typeof navigator === "object" && (function (global, factory) {
         // Firefox doesn't get the keycode for whatever reason
 
 
-        if (!is$2.number(code)) {
+        if (!is$1.number(code)) {
           return;
         } // Seek by the number keys
 
@@ -10863,7 +10863,7 @@ typeof navigator === "object" && (function (global, factory) {
           // and any that accept key input http://webaim.org/techniques/keyboard/
           var focused = document.activeElement;
 
-          if (is$2.element(focused)) {
+          if (is$1.element(focused)) {
             var editable = player.config.selectors.editable;
             var seek = elements.inputs.seek;
 
@@ -11135,7 +11135,7 @@ typeof navigator === "object" && (function (global, factory) {
           } // If it's not an embed and no ratio specified
 
 
-          if (!player.isEmbed && is$2.empty(player.config.ratio)) {
+          if (!player.isEmbed && is$1.empty(player.config.ratio)) {
             return;
           }
 
@@ -11204,7 +11204,7 @@ typeof navigator === "object" && (function (global, factory) {
           // Re-fetch the wrapper
           var wrapper = getElement.call(player, ".".concat(player.config.classNames.video)); // Bail if there's no wrapper (this should never happen)
 
-          if (!is$2.element(wrapper)) {
+          if (!is$1.element(wrapper)) {
             return;
           } // On click play, pause or restart
 
@@ -11285,7 +11285,7 @@ typeof navigator === "object" && (function (global, factory) {
       value: function proxy(event, defaultHandler, customHandlerKey) {
         var player = this.player;
         var customHandler = player.config.listeners[customHandlerKey];
-        var hasCustomHandler = is$2.function(customHandler);
+        var hasCustomHandler = is$1.function(customHandler);
         var returned = true; // Execute custom handler
 
         if (hasCustomHandler) {
@@ -11293,7 +11293,7 @@ typeof navigator === "object" && (function (global, factory) {
         } // Only call default handler if not prevented in custom handler
 
 
-        if (returned !== false && is$2.function(defaultHandler)) {
+        if (returned !== false && is$1.function(defaultHandler)) {
           defaultHandler.call(player, event);
         }
       } // Trigger custom and default handlers
@@ -11306,7 +11306,7 @@ typeof navigator === "object" && (function (global, factory) {
         var passive = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : true;
         var player = this.player;
         var customHandler = player.config.listeners[customHandlerKey];
-        var hasCustomHandler = is$2.function(customHandler);
+        var hasCustomHandler = is$1.function(customHandler);
         on.call(player, element, type, function (event) {
           return _this2.proxy(event, defaultHandler, customHandlerKey);
         }, passive && !hasCustomHandler);
@@ -11408,7 +11408,7 @@ typeof navigator === "object" && (function (global, factory) {
           var code = event.keyCode ? event.keyCode : event.which;
           var attribute = 'play-on-seeked';
 
-          if (is$2.keyboardEvent(event) && code !== 39 && code !== 37) {
+          if (is$1.keyboardEvent(event) && code !== 39 && code !== 37) {
             return;
           } // Record seek time so we can prevent hiding controls for a few seconds after seek
 
@@ -11456,7 +11456,7 @@ typeof navigator === "object" && (function (global, factory) {
 
           var seekTo = seek.getAttribute('seek-value');
 
-          if (is$2.empty(seekTo)) {
+          if (is$1.empty(seekTo)) {
             seekTo = seek.value;
           }
 
@@ -11510,7 +11510,7 @@ typeof navigator === "object" && (function (global, factory) {
         // Only if one time element is used for both currentTime and duration
 
 
-        if (player.config.toggleInvert && !is$2.element(elements.display.duration)) {
+        if (player.config.toggleInvert && !is$1.element(elements.display.duration)) {
           this.bind(elements.display.currentTime, 'click', function () {
             // Do nothing if we're at the start
             if (player.currentTime === 0) {
@@ -11950,11 +11950,11 @@ typeof navigator === "object" && (function (global, factory) {
   }
 
   function parseId(url) {
-    if (is$2.empty(url)) {
+    if (is$1.empty(url)) {
       return null;
     }
 
-    if (is$2.number(Number(url))) {
+    if (is$1.number(Number(url))) {
       return url;
     }
 
@@ -11984,7 +11984,7 @@ typeof navigator === "object" && (function (global, factory) {
 
       setAspectRatio.call(player); // Load the SDK if not already
 
-      if (!is$2.object(window.Vimeo)) {
+      if (!is$1.object(window.Vimeo)) {
         loadScript(player.config.urls.vimeo.sdk).then(function () {
           vimeo.ready.call(player);
         }).catch(function (error) {
@@ -12011,7 +12011,7 @@ typeof navigator === "object" && (function (global, factory) {
 
       var source = player.media.getAttribute('src'); // Get from <div> if needed
 
-      if (is$2.empty(source)) {
+      if (is$1.empty(source)) {
         source = player.media.getAttribute(player.config.attributes.embed.id);
       }
 
@@ -12024,7 +12024,7 @@ typeof navigator === "object" && (function (global, factory) {
       iframe.setAttribute('allowtransparency', '');
       iframe.setAttribute('allow', 'autoplay'); // Set the referrer policy if required
 
-      if (!is$2.empty(config.referrerPolicy)) {
+      if (!is$1.empty(config.referrerPolicy)) {
         iframe.setAttribute('referrerPolicy', config.referrerPolicy);
       } // Get poster, if already set
 
@@ -12039,7 +12039,7 @@ typeof navigator === "object" && (function (global, factory) {
       player.media = replaceElement(wrapper, player.media); // Get poster image
 
       fetch(format(player.config.urls.vimeo.api, id), 'json').then(function (response) {
-        if (is$2.empty(response)) {
+        if (is$1.empty(response)) {
           return;
         } // Get the URL for thumbnail
 
@@ -12143,7 +12143,7 @@ typeof navigator === "object" && (function (global, factory) {
           return muted;
         },
         set: function set(input) {
-          var toggle = is$2.boolean(input) ? input : false;
+          var toggle = is$1.boolean(input) ? input : false;
           player.embed.setVolume(toggle ? 0 : player.config.volume).then(function () {
             muted = toggle;
             triggerEvent.call(player, player.media, 'volumechange');
@@ -12157,7 +12157,7 @@ typeof navigator === "object" && (function (global, factory) {
           return loop;
         },
         set: function set(input) {
-          var toggle = is$2.boolean(input) ? input : player.config.loop.active;
+          var toggle = is$1.boolean(input) ? input : player.config.loop.active;
           player.embed.setLoop(toggle).then(function () {
             loop = toggle;
           });
@@ -12233,7 +12233,7 @@ typeof navigator === "object" && (function (global, factory) {
           }
         });
 
-        if (is$2.element(player.embed.element) && player.supported.ui) {
+        if (is$1.element(player.embed.element) && player.supported.ui) {
           var frame = player.embed.element; // Fix keyboard focus issues
           // https://github.com/sampotts/plyr/issues/317
 
@@ -12295,7 +12295,7 @@ typeof navigator === "object" && (function (global, factory) {
   };
 
   function parseId$1(url) {
-    if (is$2.empty(url)) {
+    if (is$1.empty(url)) {
       return null;
     }
 
@@ -12335,7 +12335,7 @@ typeof navigator === "object" && (function (global, factory) {
       // Add embed class for responsive
       toggleClass(this.elements.wrapper, this.config.classNames.embed, true); // Setup API
 
-      if (is$2.object(window.YT) && is$2.function(window.YT.Player)) {
+      if (is$1.object(window.YT) && is$1.function(window.YT.Player)) {
         youtube.ready.call(this);
       } else {
         // Reference current global callback
@@ -12343,7 +12343,7 @@ typeof navigator === "object" && (function (global, factory) {
 
         window.onYouTubeIframeAPIReady = function () {
           // Call global callback if set
-          if (is$2.function(callback)) {
+          if (is$1.function(callback)) {
             callback();
           }
 
@@ -12362,7 +12362,7 @@ typeof navigator === "object" && (function (global, factory) {
 
       var url = format(this.config.urls.youtube.api, videoId);
       fetch(url).then(function (data) {
-        if (is$2.object(data)) {
+        if (is$1.object(data)) {
           var title = data.title,
               height = data.height,
               width = data.width; // Set title
@@ -12385,14 +12385,14 @@ typeof navigator === "object" && (function (global, factory) {
 
       var currentId = player.media && player.media.getAttribute('id');
 
-      if (!is$2.empty(currentId) && currentId.startsWith('youtube-')) {
+      if (!is$1.empty(currentId) && currentId.startsWith('youtube-')) {
         return;
       } // Get the source URL or ID
 
 
       var source = player.media.getAttribute('src'); // Get from <div> if needed
 
-      if (is$2.empty(source)) {
+      if (is$1.empty(source)) {
         source = player.media.getAttribute(this.config.attributes.embed.id);
       } // Replace the <iframe> with a <div> due to YouTube API issues
 
@@ -12480,7 +12480,7 @@ typeof navigator === "object" && (function (global, factory) {
           },
           onReady: function onReady(event) {
             // Bail if onReady has already been called. See issue #1108
-            if (is$2.function(player.media.play)) {
+            if (is$1.function(player.media.play)) {
               return;
             } // Get the instance
 
@@ -12552,7 +12552,7 @@ typeof navigator === "object" && (function (global, factory) {
                 return muted;
               },
               set: function set(input) {
-                var toggle = is$2.boolean(input) ? input : muted;
+                var toggle = is$1.boolean(input) ? input : muted;
                 muted = toggle;
                 instance[toggle ? 'mute' : 'unMute']();
                 triggerEvent.call(player, player.media, 'volumechange');
@@ -12806,7 +12806,7 @@ typeof navigator === "object" && (function (global, factory) {
         } // Check if the Google IMA3 SDK is loaded or load it ourselves
 
 
-        if (!is$2.object(window.google) || !is$2.object(window.google.ima)) {
+        if (!is$1.object(window.google) || !is$1.object(window.google.ima)) {
           loadScript(this.player.config.urls.googleIMA.sdk).then(function () {
             _this2.ready();
           }).catch(function () {
@@ -12983,12 +12983,12 @@ typeof navigator === "object" && (function (global, factory) {
         var _this7 = this;
 
         // Add advertisement cue's within the time line if available
-        if (!is$2.empty(this.cuePoints)) {
+        if (!is$1.empty(this.cuePoints)) {
           this.cuePoints.forEach(function (cuePoint) {
             if (cuePoint !== 0 && cuePoint !== -1 && cuePoint < _this7.player.duration) {
               var seekElement = _this7.player.elements.progress;
 
-              if (is$2.element(seekElement)) {
+              if (is$1.element(seekElement)) {
                 var cuePercentage = 100 / _this7.player.duration * cuePoint;
                 var cue = createElement('span', {
                   class: _this7.player.config.classNames.cues
@@ -13135,7 +13135,7 @@ typeof navigator === "object" && (function (global, factory) {
         this.player.on('seeked', function () {
           var seekedTime = _this9.player.currentTime;
 
-          if (is$2.empty(_this9.cuePoints)) {
+          if (is$1.empty(_this9.cuePoints)) {
             return;
           }
 
@@ -13286,9 +13286,9 @@ typeof navigator === "object" && (function (global, factory) {
 
         var handlers = this.events[event];
 
-        if (is$2.array(handlers)) {
+        if (is$1.array(handlers)) {
           handlers.forEach(function (handler) {
-            if (is$2.function(handler)) {
+            if (is$1.function(handler)) {
               handler.apply(_this12, args);
             }
           });
@@ -13304,7 +13304,7 @@ typeof navigator === "object" && (function (global, factory) {
     }, {
       key: "on",
       value: function on(event, callback) {
-        if (!is$2.array(this.events[event])) {
+        if (!is$1.array(this.events[event])) {
           this.events[event] = [];
         }
 
@@ -13340,7 +13340,7 @@ typeof navigator === "object" && (function (global, factory) {
     }, {
       key: "clearSafetyTimer",
       value: function clearSafetyTimer(from) {
-        if (!is$2.nullOrUndefined(this.safetyTimer)) {
+        if (!is$1.nullOrUndefined(this.safetyTimer)) {
           this.player.debug.log("Safety timer cleared from: ".concat(from));
           clearTimeout(this.safetyTimer);
           this.safetyTimer = null;
@@ -13350,14 +13350,14 @@ typeof navigator === "object" && (function (global, factory) {
       key: "enabled",
       get: function get() {
         var config = this.config;
-        return this.player.isHTML5 && this.player.isVideo && config.enabled && (!is$2.empty(config.publisherId) || is$2.url(config.tagUrl));
+        return this.player.isHTML5 && this.player.isVideo && config.enabled && (!is$1.empty(config.publisherId) || is$1.url(config.tagUrl));
       }
     }, {
       key: "tagUrl",
       get: function get() {
         var config = this.config;
 
-        if (is$2.url(config.tagUrl)) {
+        if (is$1.url(config.tagUrl)) {
           return config.tagUrl;
         }
 
@@ -13436,7 +13436,7 @@ typeof navigator === "object" && (function (global, factory) {
       var result = {};
       var lines = frame.split(/\r\n|\n|\r/);
       lines.forEach(function (line) {
-        if (!is$2.number(result.startTime)) {
+        if (!is$1.number(result.startTime)) {
           // The line with start and end times on it is the first line of interest
           var matchTimes = line.match(/([0-9]{2})?:?([0-9]{2}):([0-9]{2}).([0-9]{2,3})( ?--> ?)([0-9]{2})?:?([0-9]{2}):([0-9]{2}).([0-9]{2,3})/); // Note that this currently ignores caption formatting directives that are optionally on the end of this line - fine for non-captions VTT
 
@@ -13444,7 +13444,7 @@ typeof navigator === "object" && (function (global, factory) {
             result.startTime = Number(matchTimes[1] || 0) * 60 * 60 + Number(matchTimes[2]) * 60 + Number(matchTimes[3]) + Number("0.".concat(matchTimes[4]));
             result.endTime = Number(matchTimes[6] || 0) * 60 * 60 + Number(matchTimes[7]) * 60 + Number(matchTimes[8]) + Number("0.".concat(matchTimes[9]));
           }
-        } else if (!is$2.empty(line.trim()) && is$2.empty(result.text)) {
+        } else if (!is$1.empty(line.trim()) && is$1.empty(result.text)) {
           // If we already have the startTime, then we're definitely up to the text line(s)
           var lineSplit = line.trim().split('#xywh=');
 
@@ -13558,12 +13558,12 @@ typeof navigator === "object" && (function (global, factory) {
         return new Promise(function (resolve) {
           var src = _this2.player.config.previewThumbnails.src;
 
-          if (is$2.empty(src)) {
+          if (is$1.empty(src)) {
             throw new Error('Missing previewThumbnails.src config attribute');
           } // If string, convert into single-element list
 
 
-          var urls = is$2.string(src) ? [src] : src; // Loop through each src URL. Download and process the VTT file, storing the resulting data in this.thumbnails
+          var urls = is$1.string(src) ? [src] : src; // Loop through each src URL. Download and process the VTT file, storing the resulting data in this.thumbnails
 
           var promises = urls.map(function (u) {
             return _this2.getThumbnail(u);
@@ -13623,7 +13623,7 @@ typeof navigator === "object" && (function (global, factory) {
           return;
         }
 
-        if (!is$2.event(event) || !['touchmove', 'mousemove'].includes(event.type)) {
+        if (!is$1.event(event) || !['touchmove', 'mousemove'].includes(event.type)) {
           return;
         } // Wait until media has a duration
 
@@ -13668,7 +13668,7 @@ typeof navigator === "object" && (function (global, factory) {
       key: "startScrubbing",
       value: function startScrubbing(event) {
         // Only act on left mouse button (0), or touch device (event.button does not exist or is false)
-        if (is$2.nullOrUndefined(event.button) || event.button === false || event.button === 0) {
+        if (is$1.nullOrUndefined(event.button) || event.button === false || event.button === 0) {
           this.mouseDown = true; // Wait until media has a duration
 
           if (this.player.media.duration) {
@@ -13743,7 +13743,7 @@ typeof navigator === "object" && (function (global, factory) {
         timeContainer.appendChild(this.elements.thumb.time);
         this.elements.thumb.container.appendChild(timeContainer); // Inject the whole thumb
 
-        if (is$2.element(this.player.elements.progress)) {
+        if (is$1.element(this.player.elements.progress)) {
           this.player.elements.progress.appendChild(this.elements.thumb.container);
         } // Create HTML element: plyr__preview-scrubbing-container
 
@@ -14162,11 +14162,11 @@ typeof navigator === "object" && (function (global, factory) {
     insertElements: function insertElements(type, attributes) {
       var _this = this;
 
-      if (is$2.string(attributes)) {
+      if (is$1.string(attributes)) {
         insertElement(type, this.media, {
           src: attributes
         });
-      } else if (is$2.array(attributes)) {
+      } else if (is$1.array(attributes)) {
         attributes.forEach(function (attribute) {
           insertElement(type, _this.media, attribute);
         });
@@ -14192,7 +14192,7 @@ typeof navigator === "object" && (function (global, factory) {
         removeElement(_this2.media);
         _this2.media = null; // Reset class name
 
-        if (is$2.element(_this2.elements.container)) {
+        if (is$1.element(_this2.elements.container)) {
           _this2.elements.container.removeAttribute('class');
         } // Set the type and provider
 
@@ -14222,7 +14222,7 @@ typeof navigator === "object" && (function (global, factory) {
         _this2.elements.container.appendChild(_this2.media); // Autoplay the new source?
 
 
-        if (is$2.boolean(input.autoplay)) {
+        if (is$1.boolean(input.autoplay)) {
           _this2.config.autoplay = input.autoplay;
         } // Set attributes for audio and video
 
@@ -14236,7 +14236,7 @@ typeof navigator === "object" && (function (global, factory) {
             _this2.media.setAttribute('autoplay', '');
           }
 
-          if (!is$2.empty(input.poster)) {
+          if (!is$1.empty(input.poster)) {
             _this2.poster = input.poster;
           }
 
@@ -14284,7 +14284,7 @@ typeof navigator === "object" && (function (global, factory) {
         } // Update previewThumbnails config & reload plugin
 
 
-        if (!is$2.empty(input.previewThumbnails)) {
+        if (!is$1.empty(input.previewThumbnails)) {
           Object.assign(_this2.config.previewThumbnails, input.previewThumbnails); // Cleanup previewThumbnails plugin if it was loaded
 
           if (_this2.previewThumbnails && _this2.previewThumbnails.loaded) {
@@ -14344,12 +14344,12 @@ typeof navigator === "object" && (function (global, factory) {
 
       this.media = target; // String selector passed
 
-      if (is$2.string(this.media)) {
+      if (is$1.string(this.media)) {
         this.media = document.querySelectorAll(this.media);
       } // jQuery, NodeList or Array passed, use first element
 
 
-      if (window.jQuery && this.media instanceof jQuery || is$2.nodeList(this.media) || is$2.array(this.media)) {
+      if (window.jQuery && this.media instanceof jQuery || is$1.nodeList(this.media) || is$1.array(this.media)) {
         // eslint-disable-next-line
         this.media = this.media[0];
       } // Set config
@@ -14399,7 +14399,7 @@ typeof navigator === "object" && (function (global, factory) {
       this.debug.log('Config', this.config);
       this.debug.log('Support', support); // We need an element to setup
 
-      if (is$2.nullOrUndefined(this.media) || !is$2.element(this.media)) {
+      if (is$1.nullOrUndefined(this.media) || !is$1.element(this.media)) {
         this.debug.error('Setup failed: no suitable element passed');
         return;
       } // Bail if the element is initialized
@@ -14439,7 +14439,7 @@ typeof navigator === "object" && (function (global, factory) {
           // Find the frame
           iframe = this.media.querySelector('iframe'); // <iframe> type
 
-          if (is$2.element(iframe)) {
+          if (is$1.element(iframe)) {
             // Detect provider
             url = parseUrl(iframe.getAttribute('src'));
             this.provider = getProviderByUrl(url.toString()); // Rework elements
@@ -14477,7 +14477,7 @@ typeof navigator === "object" && (function (global, factory) {
           } // Unsupported or missing provider
 
 
-          if (is$2.empty(this.provider) || !Object.keys(providers).includes(this.provider)) {
+          if (is$1.empty(this.provider) || !Object.keys(providers).includes(this.provider)) {
             this.debug.error('Setup failed: Invalid provider');
             return;
           } // Audio will come later for external providers
@@ -14534,7 +14534,7 @@ typeof navigator === "object" && (function (global, factory) {
 
       this.media.plyr = this; // Wrap media
 
-      if (!is$2.element(this.elements.container)) {
+      if (!is$1.element(this.elements.container)) {
         this.elements.container = createElement('div', {
           tabindex: 0
         });
@@ -14600,7 +14600,7 @@ typeof navigator === "object" && (function (global, factory) {
       value: function play() {
         var _this2 = this;
 
-        if (!is$2.function(this.media.play)) {
+        if (!is$1.function(this.media.play)) {
           return null;
         } // Intecept play with ads
 
@@ -14623,7 +14623,7 @@ typeof navigator === "object" && (function (global, factory) {
     }, {
       key: "pause",
       value: function pause() {
-        if (!this.playing || !is$2.function(this.media.pause)) {
+        if (!this.playing || !is$1.function(this.media.pause)) {
           return null;
         }
 
@@ -14642,7 +14642,7 @@ typeof navigator === "object" && (function (global, factory) {
        */
       value: function togglePlay(input) {
         // Toggle based on current state if nothing passed
-        var toggle = is$2.boolean(input) ? input : !this.playing;
+        var toggle = is$1.boolean(input) ? input : !this.playing;
 
         if (toggle) {
           return this.play();
@@ -14660,7 +14660,7 @@ typeof navigator === "object" && (function (global, factory) {
         if (this.isHTML5) {
           this.pause();
           this.restart();
-        } else if (is$2.function(this.media.stop)) {
+        } else if (is$1.function(this.media.stop)) {
           this.media.stop();
         }
       }
@@ -14681,7 +14681,7 @@ typeof navigator === "object" && (function (global, factory) {
     }, {
       key: "rewind",
       value: function rewind(seekTime) {
-        this.currentTime -= is$2.number(seekTime) ? seekTime : this.config.seekTime;
+        this.currentTime -= is$1.number(seekTime) ? seekTime : this.config.seekTime;
       }
       /**
        * Fast forward
@@ -14691,7 +14691,7 @@ typeof navigator === "object" && (function (global, factory) {
     }, {
       key: "forward",
       value: function forward(seekTime) {
-        this.currentTime += is$2.number(seekTime) ? seekTime : this.config.seekTime;
+        this.currentTime += is$1.number(seekTime) ? seekTime : this.config.seekTime;
       }
       /**
        * Seek to a time
@@ -14707,7 +14707,7 @@ typeof navigator === "object" && (function (global, factory) {
        */
       value: function increaseVolume(step) {
         var volume = this.media.muted ? 0 : this.volume;
-        this.volume = volume + (is$2.number(step) ? step : 0);
+        this.volume = volume + (is$1.number(step) ? step : 0);
       }
       /**
        * Decrease volume
@@ -14769,7 +14769,7 @@ typeof navigator === "object" && (function (global, factory) {
 
           var hiding = toggleClass(this.elements.container, this.config.classNames.hideControls, force); // Close menu
 
-          if (hiding && this.config.controls.includes('settings') && !is$2.empty(this.config.settings)) {
+          if (hiding && this.config.controls.includes('settings') && !is$1.empty(this.config.settings)) {
             controls.toggleMenu.call(this, false);
           } // Trigger event on change
 
@@ -14857,7 +14857,7 @@ typeof navigator === "object" && (function (global, factory) {
             } // Callback
 
 
-            if (is$2.function(callback)) {
+            if (is$1.function(callback)) {
               callback();
             }
           } else {
@@ -14868,7 +14868,7 @@ typeof navigator === "object" && (function (global, factory) {
 
             triggerEvent.call(_this3, _this3.elements.original, 'destroyed', true); // Callback
 
-            if (is$2.function(callback)) {
+            if (is$1.function(callback)) {
               callback.call(_this3.elements.original);
             } // Reset state
 
@@ -14899,7 +14899,7 @@ typeof navigator === "object" && (function (global, factory) {
           clearInterval(this.timers.buffering);
           clearInterval(this.timers.playing); // Destroy YouTube API
 
-          if (this.embed !== null && is$2.function(this.embed.destroy)) {
+          if (this.embed !== null && is$1.function(this.embed.destroy)) {
             this.embed.destroy();
           } // Clean up
 
@@ -15004,7 +15004,7 @@ typeof navigator === "object" && (function (global, factory) {
         } // Validate input
 
 
-        var inputIsValid = is$2.number(input) && input > 0; // Set
+        var inputIsValid = is$1.number(input) && input > 0; // Set
 
         this.media.currentTime = inputIsValid ? Math.min(input, this.duration) : 0; // Logging
 
@@ -15026,7 +15026,7 @@ typeof navigator === "object" && (function (global, factory) {
       get: function get() {
         var buffered = this.media.buffered; // YouTube / Vimeo return a float between 0-1
 
-        if (is$2.number(buffered)) {
+        if (is$1.number(buffered)) {
           return buffered;
         } // HTML5
         // TODO: Handle buffered chunks of the media
@@ -15059,7 +15059,7 @@ typeof navigator === "object" && (function (global, factory) {
         var fauxDuration = parseFloat(this.config.duration); // Media duration can be NaN or Infinity before the media has loaded
 
         var realDuration = (this.media || {}).duration;
-        var duration = !is$2.number(realDuration) || realDuration === Infinity ? 0 : realDuration; // If config duration is funky, use regular duration
+        var duration = !is$1.number(realDuration) || realDuration === Infinity ? 0 : realDuration; // If config duration is funky, use regular duration
 
         return fauxDuration || duration;
       }
@@ -15075,17 +15075,17 @@ typeof navigator === "object" && (function (global, factory) {
         var max = 1;
         var min = 0;
 
-        if (is$2.string(volume)) {
+        if (is$1.string(volume)) {
           volume = Number(volume);
         } // Load volume from storage if no value specified
 
 
-        if (!is$2.number(volume)) {
+        if (!is$1.number(volume)) {
           volume = this.storage.get('volume');
         } // Use config if all else fails
 
 
-        if (!is$2.number(volume)) {
+        if (!is$1.number(volume)) {
           volume = this.config.volume;
         } // Maximum is volumeMax
 
@@ -15104,7 +15104,7 @@ typeof navigator === "object" && (function (global, factory) {
 
         this.media.volume = volume; // If muted, and we're increasing volume manually, reset muted state
 
-        if (!is$2.empty(value) && this.muted && volume > 0) {
+        if (!is$1.empty(value) && this.muted && volume > 0) {
           this.muted = false;
         }
       }
@@ -15120,12 +15120,12 @@ typeof navigator === "object" && (function (global, factory) {
       set: function set(mute) {
         var toggle = mute; // Load muted state from storage
 
-        if (!is$2.boolean(toggle)) {
+        if (!is$1.boolean(toggle)) {
           toggle = this.storage.get('muted');
         } // Use config if all else fails
 
 
-        if (!is$2.boolean(toggle)) {
+        if (!is$1.boolean(toggle)) {
           toggle = this.config.muted;
         } // Update config
 
@@ -15172,15 +15172,15 @@ typeof navigator === "object" && (function (global, factory) {
 
         var speed = null;
 
-        if (is$2.number(input)) {
+        if (is$1.number(input)) {
           speed = input;
         }
 
-        if (!is$2.number(speed)) {
+        if (!is$1.number(speed)) {
           speed = this.storage.get('speed');
         }
 
-        if (!is$2.number(speed)) {
+        if (!is$1.number(speed)) {
           speed = this.config.speed.selected;
         } // Clamp to min/max
 
@@ -15258,7 +15258,7 @@ typeof navigator === "object" && (function (global, factory) {
           return;
         }
 
-        var quality = [!is$2.empty(input) && Number(input), this.storage.get('quality'), config.selected, config.default].find(is$2.number);
+        var quality = [!is$1.empty(input) && Number(input), this.storage.get('quality'), config.selected, config.default].find(is$1.number);
         var updateStorage = true;
 
         if (!options.includes(quality)) {
@@ -15296,7 +15296,7 @@ typeof navigator === "object" && (function (global, factory) {
     }, {
       key: "loop",
       set: function set(input) {
-        var toggle = is$2.boolean(input) ? input : this.config.loop.active;
+        var toggle = is$1.boolean(input) ? input : this.config.loop.active;
         this.config.loop.active = toggle;
         this.media.loop = toggle; // Set default to be a true toggle
 
@@ -15369,14 +15369,14 @@ typeof navigator === "object" && (function (global, factory) {
       key: "download",
       get: function get() {
         var download = this.config.urls.download;
-        return is$2.url(download) ? download : this.source;
+        return is$1.url(download) ? download : this.source;
       }
       /**
        * Set the download URL
        */
       ,
       set: function set(input) {
-        if (!is$2.url(input)) {
+        if (!is$1.url(input)) {
           return;
         }
 
@@ -15421,7 +15421,7 @@ typeof navigator === "object" && (function (global, factory) {
         }
 
         var ratio = reduceAspectRatio(getAspectRatio.call(this));
-        return is$2.array(ratio) ? ratio.join(':') : ratio;
+        return is$1.array(ratio) ? ratio.join(':') : ratio;
       }
       /**
        * Set video aspect ratio
@@ -15433,7 +15433,7 @@ typeof navigator === "object" && (function (global, factory) {
           return;
         }
 
-        if (!is$2.string(input) || !validateRatio(input)) {
+        if (!is$1.string(input) || !validateRatio(input)) {
           this.debug.error("Invalid aspect ratio specified (".concat(input, ")"));
           return;
         }
@@ -15449,7 +15449,7 @@ typeof navigator === "object" && (function (global, factory) {
     }, {
       key: "autoplay",
       set: function set(input) {
-        var toggle = is$2.boolean(input) ? input : this.config.autoplay;
+        var toggle = is$1.boolean(input) ? input : this.config.autoplay;
         this.config.autoplay = toggle;
       }
       /**
@@ -15507,15 +15507,15 @@ typeof navigator === "object" && (function (global, factory) {
         } // Toggle based on current state if not passed
 
 
-        var toggle = is$2.boolean(input) ? input : !this.pip; // Toggle based on current state
+        var toggle = is$1.boolean(input) ? input : !this.pip; // Toggle based on current state
         // Safari
 
-        if (is$2.function(this.media.webkitSetPresentationMode)) {
+        if (is$1.function(this.media.webkitSetPresentationMode)) {
           this.media.webkitSetPresentationMode(toggle ? pip.active : pip.inactive);
         } // Chrome
 
 
-        if (is$2.function(this.media.requestPictureInPicture)) {
+        if (is$1.function(this.media.requestPictureInPicture)) {
           if (!this.pip && toggle) {
             this.media.requestPictureInPicture();
           } else if (this.pip && !toggle) {
@@ -15533,7 +15533,7 @@ typeof navigator === "object" && (function (global, factory) {
         } // Safari
 
 
-        if (!is$2.empty(this.media.webkitPresentationMode)) {
+        if (!is$1.empty(this.media.webkitPresentationMode)) {
           return this.media.webkitPresentationMode === pip.active;
         } // Chrome
 
@@ -15568,15 +15568,15 @@ typeof navigator === "object" && (function (global, factory) {
         var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
         var targets = null;
 
-        if (is$2.string(selector)) {
+        if (is$1.string(selector)) {
           targets = Array.from(document.querySelectorAll(selector));
-        } else if (is$2.nodeList(selector)) {
+        } else if (is$1.nodeList(selector)) {
           targets = Array.from(selector);
-        } else if (is$2.array(selector)) {
-          targets = selector.filter(is$2.element);
+        } else if (is$1.array(selector)) {
+          targets = selector.filter(is$1.element);
         }
 
-        if (is$2.empty(targets)) {
+        if (is$1.empty(targets)) {
           return null;
         }
 
