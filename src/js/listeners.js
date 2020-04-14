@@ -681,7 +681,7 @@ class Listeners {
             // If we're done seeking and it was playing, resume playback.
             // Unless there's a custom handler set for seeked
             var customHandler = player.config.listeners.seeked;
-            var hasCustomHandler = is$1.function(customHandler);
+            var hasCustomHandler = is.function(customHandler);
 
             if (hasCustomHandler && done) {
                 const returned = customHandler.call(player, event);
