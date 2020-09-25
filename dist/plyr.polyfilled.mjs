@@ -4402,7 +4402,7 @@ function _nonIterableRest() {
   var checkIfURLSearchParamsSupported = function checkIfURLSearchParamsSupported() {
     try {
       var URLSearchParams = global.URLSearchParams;
-      return new URLSearchParams('?a=1').toString() === 'a=1' && typeof URLSearchParams.prototype.set === 'function';
+      return new URLSearchParams('?a=1').toString() === 'a=1' && typeof URLSearchParams.prototype.set === 'function' && typeof URLSearchParams.prototype.entries === 'function';
     } catch (e) {
       return false;
     }
@@ -4526,7 +4526,11 @@ function _nonIterableRest() {
         anchorElement.href = anchorElement.href; // force href to refresh
       }
 
-      if (anchorElement.protocol === ':' || !/:/.test(anchorElement.href)) {
+      var inputElement = doc.createElement('input');
+      inputElement.type = 'url';
+      inputElement.value = url;
+
+      if (anchorElement.protocol === ':' || !/:/.test(anchorElement.href) || !inputElement.checkValidity() && !base) {
         throw new TypeError('Invalid URL');
       }
 
@@ -10100,6 +10104,7 @@ var defaults$1 = {
   // Custom control listeners
   listeners: {
     seek: null,
+    seeked: null,
     play: null,
     pause: null,
     restart: null,
@@ -11523,9 +11528,20 @@ var Listeners = /*#__PURE__*/function () {
 
         var play = seek.hasAttribute(attribute); // Done seeking
 
-        var done = ['mouseup', 'touchend', 'keyup'].includes(event.type); // If we're done seeking and it was playing, resume playback
+        var done = ['mouseup', 'touchend', 'keyup'].includes(event.type); // If we're done seeking and it was playing, resume playback.
+        // Unless there's a custom handler set for seeked
 
-        if (play && done) {
+        var customHandler = player.config.listeners.seeked;
+        var hasCustomHandler = is$1.function(customHandler);
+
+        if (hasCustomHandler && done) {
+          var returned = customHandler.call(player, event);
+          seek.removeAttribute(attribute);
+
+          if (returned) {
+            player.play();
+          }
+        } else if (play && done) {
           seek.removeAttribute(attribute);
           silencePromise(player.play());
         } else if (!done && player.playing) {

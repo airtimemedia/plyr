@@ -3779,6 +3779,7 @@ var defaults$1 = {
   // Custom control listeners
   listeners: {
     seek: null,
+    seeked: null,
     play: null,
     pause: null,
     restart: null,
@@ -5189,9 +5190,20 @@ var Listeners = /*#__PURE__*/function () {
 
         var play = seek.hasAttribute(attribute); // Done seeking
 
-        var done = ['mouseup', 'touchend', 'keyup'].includes(event.type); // If we're done seeking and it was playing, resume playback
+        var done = ['mouseup', 'touchend', 'keyup'].includes(event.type); // If we're done seeking and it was playing, resume playback.
+        // Unless there's a custom handler set for seeked
 
-        if (play && done) {
+        var customHandler = player.config.listeners.seeked;
+        var hasCustomHandler = is$1.function(customHandler);
+
+        if (hasCustomHandler && done) {
+          var returned = customHandler.call(player, event);
+          seek.removeAttribute(attribute);
+
+          if (returned) {
+            player.play();
+          }
+        } else if (play && done) {
           seek.removeAttribute(attribute);
           silencePromise(player.play());
         } else if (!done && player.playing) {

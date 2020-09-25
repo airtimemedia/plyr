@@ -1,7 +1,7 @@
 typeof navigator === "object" && (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define('Plyr', factory) :
-  (global = global || self, global.Plyr = factory());
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Plyr = factory());
 }(this, (function () { 'use strict';
 
   function _classCallCheck(instance, Constructor) {
@@ -3785,6 +3785,7 @@ typeof navigator === "object" && (function (global, factory) {
     // Custom control listeners
     listeners: {
       seek: null,
+      seeked: null,
       play: null,
       pause: null,
       restart: null,
@@ -5195,9 +5196,20 @@ typeof navigator === "object" && (function (global, factory) {
 
           var play = seek.hasAttribute(attribute); // Done seeking
 
-          var done = ['mouseup', 'touchend', 'keyup'].includes(event.type); // If we're done seeking and it was playing, resume playback
+          var done = ['mouseup', 'touchend', 'keyup'].includes(event.type); // If we're done seeking and it was playing, resume playback.
+          // Unless there's a custom handler set for seeked
 
-          if (play && done) {
+          var customHandler = player.config.listeners.seeked;
+          var hasCustomHandler = is$1.function(customHandler);
+
+          if (hasCustomHandler && done) {
+            var returned = customHandler.call(player, event);
+            seek.removeAttribute(attribute);
+
+            if (returned) {
+              player.play();
+            }
+          } else if (play && done) {
             seek.removeAttribute(attribute);
             silencePromise(player.play());
           } else if (!done && player.playing) {
