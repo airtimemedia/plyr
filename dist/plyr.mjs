@@ -2872,9 +2872,10 @@ var controls = {
 
         if (control === 'volume' && !browser.isIos) {
           // Set the attributes
+          var max = window.PLYR_MAX_VOLUME || 1;
           var attributes = {
-            max: 1,
-            step: 0.05,
+            max: max,
+            step: max / 20,
             value: _this10.config.volume
           }; // Create the volume range slider
 
@@ -5882,7 +5883,8 @@ var vimeo = {
         return volume;
       },
       set: function set(input) {
-        player.embed.setVolume(input).then(function () {
+        var max = window.PLYR_VIMEO_MAX_VOLUME || 1;
+        player.embed.setVolume(input * max).then(function () {
           volume = input;
           triggerEvent.call(player, player.media, 'volumechange');
         });
@@ -5896,7 +5898,8 @@ var vimeo = {
       },
       set: function set(input) {
         var toggle = is$1.boolean(input) ? input : false;
-        player.embed.setVolume(toggle ? 0 : player.config.volume).then(function () {
+        var max = window.PLYR_VIMEO_MAX_VOLUME || 1;
+        player.embed.setVolume(toggle ? 0 : player.config.volume * max).then(function () {
           muted = toggle;
           triggerEvent.call(player, player.media, 'volumechange');
         });
@@ -6295,7 +6298,8 @@ var youtube = {
             },
             set: function set(input) {
               volume = input;
-              instance.setVolume(volume * 100);
+              var max = window.PLYR_YOUTUBE_MAX_VOLUME || 1;
+              instance.setVolume(volume * 100 * max);
               triggerEvent.call(player, player.media, 'volumechange');
             }
           }); // Muted
@@ -6307,9 +6311,10 @@ var youtube = {
             },
             set: function set(input) {
               var toggle = is$1.boolean(input) ? input : muted;
+              var max = window.PLYR_YOUTUBE_MAX_VOLUME || 1;
               muted = toggle;
               instance[toggle ? 'mute' : 'unMute']();
-              instance.setVolume(volume * 100);
+              instance.setVolume(toggle ? 0 : volume * 100 * max);
               triggerEvent.call(player, player.media, 'volumechange');
             }
           }); // Source
