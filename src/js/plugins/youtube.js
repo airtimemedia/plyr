@@ -263,7 +263,8 @@ const youtube = {
             },
             set(input) {
               volume = input;
-              instance.setVolume(volume * 100);
+              const max = window.PLYR_YOUTUBE_MAX_VOLUME || 1;
+              instance.setVolume(volume * 100 * max);
               triggerEvent.call(player, player.media, 'volumechange');
             },
           });
@@ -276,9 +277,10 @@ const youtube = {
             },
             set(input) {
               const toggle = is.boolean(input) ? input : muted;
+              const max = window.PLYR_YOUTUBE_MAX_VOLUME || 1;
               muted = toggle;
               instance[toggle ? 'mute' : 'unMute']();
-              instance.setVolume(volume * 100);
+              instance.setVolume(toggle ? 0 : volume * 100 * max);
               triggerEvent.call(player, player.media, 'volumechange');
             },
           });

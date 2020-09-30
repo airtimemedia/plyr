@@ -227,7 +227,8 @@ const vimeo = {
         return volume;
       },
       set(input) {
-        player.embed.setVolume(input).then(() => {
+        const max = window.PLYR_VIMEO_MAX_VOLUME || 1;
+        player.embed.setVolume(input * max).then(() => {
           volume = input;
           triggerEvent.call(player, player.media, 'volumechange');
         });
@@ -242,8 +243,9 @@ const vimeo = {
       },
       set(input) {
         const toggle = is.boolean(input) ? input : false;
+        const max = window.PLYR_VIMEO_MAX_VOLUME || 1;
 
-        player.embed.setVolume(toggle ? 0 : player.config.volume).then(() => {
+        player.embed.setVolume(toggle ? 0 : player.config.volume * max).then(() => {
           muted = toggle;
           triggerEvent.call(player, player.media, 'volumechange');
         });

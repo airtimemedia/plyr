@@ -1373,9 +1373,10 @@ const controls = {
         // https://developer.apple.com/library/safari/documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/Device-SpecificConsiderations/Device-SpecificConsiderations.html
         if (control === 'volume' && !browser.isIos) {
           // Set the attributes
+          const max = window.PLYR_MAX_VOLUME || 1;
           const attributes = {
-            max: 1,
-            step: 0.05,
+            max,
+            step: max / 20,
             value: this.config.volume,
           };
 
